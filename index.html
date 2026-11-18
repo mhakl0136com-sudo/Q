@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>احجز معايا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --panel: #14191f;
+    --gold: #c9a24a;
+    --gold-dim: #8a7132;
+    --paper: #ece6d8;
+    --muted: #8b93a0;
+    --line: #2a2f38;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 500px at 50% -10%, #1d232d 0%, var(--ink) 55%),
+      repeating-linear-gradient(135deg, rgba(201,162,74,.025) 0 2px, transparent 2px 5px),
+      var(--ink);
+    color: var(--paper);
+    font-family: 'Tajawal', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+  .frame {
+    width: 100%;
+    max-width: 440px;
+  }
+  .crest {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .crest .mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px; height: 54px;
+    border: 1px solid var(--gold-dim);
+    outline: 1px solid rgba(201,162,74,.28);
+    outline-offset: 4px;
+    border-radius: 50%;
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 1.45rem;
+    color: var(--gold);
+    background: radial-gradient(circle at 50% 35%, rgba(201,162,74,.16), transparent 70%);
+    box-shadow: 0 0 18px rgba(201,162,74,.12);
+  }
+  .crest .by {
+    margin-top: 10px;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    color: var(--muted);
+  }
+  .card {
+    background: linear-gradient(180deg, var(--panel), #11151b);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 36px 30px;
+    position: relative;
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,.6),
+      0 0 0 1px rgba(201,162,74,.05),
+      0 0 70px -25px rgba(201,162,74,.18);
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(201,162,74,.22);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute;
+    width: 16px; height: 16px;
+    border: 1px solid var(--gold);
+    opacity: .6;
+    pointer-events: none;
+  }
+  .corner.tl { top: 3px; left: 3px; border-width: 1px 0 0 1px; }
+  .corner.tr { top: 3px; right: 3px; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: 3px; left: 3px; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: 3px; right: 3px; border-width: 0 1px 1px 0; }
+  h1 {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: 2.1rem;
+    margin: 0 0 4px;
+    text-align: center;
+    background: linear-gradient(180deg, #f1dfa8 0%, var(--gold) 45%, var(--gold-dim) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .tagline {
+    text-align: center;
+    color: var(--muted);
+    font-size: .88rem;
+    margin: 0 0 24px;
+  }
+  .rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 24px;
+    position: relative;
+  }
+  .rule::after {
+    content: "◆";
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(50%);
+    background: var(--panel);
+    color: var(--gold-dim);
+    font-size: .55rem;
+    padding: 0 10px;
+  }
+  label {
+    display: block;
+    font-size: .82rem;
+    color: var(--gold);
+    letter-spacing: .01em;
+    margin: 18px 0 7px;
+  }
+  label:first-of-type { margin-top: 0; }
+  input, select, textarea {
+    width: 100%;
+    background: #0e1217;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--paper);
+    font: inherit;
+    font-size: .95rem;
+    padding: 12px 13px;
+    transition: border-color .15s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold-dim);
+  }
+  select { appearance: none; cursor: pointer; }
+  .hint {
+    font-size: .76rem;
+    color: var(--muted);
+    margin: 8px 2px 0;
+    line-height: 1.6;
+  }
+  button {
+    width: 100%;
+    margin-top: 26px;
+    padding: 14px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--gold);
+    font: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  }
+  button:hover:not(:disabled) {
+    background: linear-gradient(180deg, #ddc06f, var(--gold));
+    color: #14191f;
+    box-shadow: 0 6px 20px -6px rgba(201,162,74,.5);
+  }
+  button:disabled { opacity: .5; cursor: default; }
+  .err { color: #c97a7a; font-size: .85rem; margin-top: 12px; text-align: center; }
+  .box {
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+    padding: 16px;
+    margin: 18px 0;
+    text-align: center;
+    background: radial-gradient(circle at 50% 0%, rgba(201,162,74,.07), transparent 70%);
+  }
+  .box .lbl { font-size: .78rem; color: var(--muted); margin-bottom: 6px; }
+  .box b {
+    font-size: 1.35rem;
+    letter-spacing: .03em;
+    color: var(--gold);
+    direction: ltr;
+    display: inline-block;
+  }
+  .status {
+    text-align: center;
+    font-size: .9rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .status.ok { color: #b9cf9a; font-weight: 700; }
+  [hidden] { display: none !important; }
+  .footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: .72rem;
+    letter-spacing: .02em;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="crest">
+    <div class="mark">ح</div>
+    <div class="by">خدمة حجز خاصة</div>
+  </div>
+
+  <div class="card">
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div id="form">
+      <h1>احجز معايا</h1>
+      <p class="tagline">اختار الخدمة واملا بياناتك</p>
+      <hr class="rule">
+
+      <label>الخدمة</label>
+      <select id="service">
+        <option value="qrueo">كريو — 30 جنيه</option>
+        <option value="finance">الثقافة المالية — 50 جنيه</option>
+      </select>
+
+      <label>اسمك</label>
+      <input id="name" autocomplete="name">
+
+      <label>الرقم اللي هتحوّل منه</label>
+      <input id="from" type="tel" inputmode="numeric" placeholder="01XXXXXXXXX">
+
+      <label>الأيدي (Username/ID) بتاع المنصة</label>
+      <input id="platformId" autocomplete="off">
+
+      <label>الباسورد بتاع المنصة</label>
+      <input id="platformPass" type="password" autocomplete="off">
+      <p class="hint">بياناتك دي بتتبعت مباشرة عشان ندخلك نفّذلك الخدمة، ومبتتخزنش عندك على جهازك.</p>
+
+      <label>ملاحظة (اختياري)</label>
+      <textarea id="note" rows="2"></textarea>
+
+      <button id="go">تأكيد وإظهار رقم التحويل</button>
+      <div class="err" id="err" hidden></div>
+    </div>
+
+    <div id="pay" hidden>
+      <h1>خطوة التحويل</h1>
+      <p class="tagline">حوّل المبلغ بالظبط من الرقم اللي كتبته</p>
+      <hr class="rule">
+      <div class="box">
+        <div class="lbl">المبلغ المطلوب</div>
+        <b><span id="amt"></span> جنيه</b>
+      </div>
+      <div class="box">
+        <div class="lbl">رقم فودافون كاش</div>
+        <b>01001207608</b>
+      </div>
+      <p class="status" id="wait">⏳ في انتظار تأكيد التحويل...</p>
+      <p class="status ok" id="done" hidden>✅ تم تأكيد الحجز، هنتواصل معاك قريب</p>
+    </div>
+  </div>
+  <div class="footer">تم التطوير بواسطة الهندسة عمرو أحمد<br>تحت إشراف معتز المتولي</div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+$('go').onclick = async () => {
+  $('err').hidden = true; $('go').disabled = true;
+  try {
+    const r = await fetch('/api/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service: $('service').value,
+        platformId: $('platformId').value,
+        platformPass: $('platformPass').value,
+        name: $('name').value,
+        from: $('from').value,
+        note: $('note').value
+      })
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'حصل خطأ');
+    $('amt').textContent = d.amount;
+    $('form').hidden = true; $('pay').hidden = false;
+    const t = setInterval(async () => {
+      try {
+        const s = await (await fetch('/api/status/' + d.id)).json();
+        if (s.status === 'paid') { clearInterval(t); $('wait').hidden = true; $('done').hidden = false; }
+      } catch (e) {}
+    }, 5000);
+  } catch (e) {
+    $('err').textContent = e.message; $('err').hidden = false; $('go').disabled = false;
+  }
+};
+</script>
+</body>
+</html>

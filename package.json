@@ -1,0 +1,12 @@
+{
+  "name": "booking-site",
+  "version": "1.0.0",
+  "description": "موقع حجز مع تأكيد دفع عبر SMS وتنبيه واتساب",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
